@@ -5,8 +5,8 @@ import requests
 from time import sleep
 
 
-API_KEY = "6bbb597d688f482480e2b166687174c1"
-AUDIO_FILE = '/Users/paulpaliychuk/job/love/audio-filter/mlk_dream.mp3'
+API_KEY = os.environ['ASSEMPLY_API_KEY']
+AUDIO_FILE = os.environ['AUDIO_FILE_PATH']
 UPLOAD_ENDPOINT = 'https://api.assemblyai.com/v2/upload'
 TRANSCRIPT_ENDPOINT = 'https://api.assemblyai.com/v2/transcript'
 OUTPUT_TRANSCRIPT_FILE = 'i-have-a-dream-transcript.txt'
@@ -75,7 +75,7 @@ res_redacted_audio_file = requests.get(
     res_result.json()['id'] + "/redacted-audio",
     headers=headers,
 )
-
+# Get the redacted audio file url
 print(res_redacted_audio_file.json())
 
 print(f'Transcript file saved under {OUTPUT_TRANSCRIPT_FILE}')
